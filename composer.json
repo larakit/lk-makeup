@@ -1,0 +1,26 @@
+{
+    "name": "larakit/lk-makeup",
+    "description": "[Larakit] рабочий стол верстальщика",
+    "keywords": [
+
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Berdnikov",
+            "email": "aberdnikov@gmail.com"
+        }
+    ],
+    "require": {
+        "larakit/lk": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Larakit\\Makeup\\": "src/Makeup"
+        },
+        "files": [
+            "src/init.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}

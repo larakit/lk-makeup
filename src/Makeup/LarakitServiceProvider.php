@@ -15,6 +15,7 @@ class LarakitServiceProvider extends ServiceProvider {
 
 
     public function boot() {
+        $this->larapackage('larakit/lk-makeup', 'lk-makeup');
         $this->makeupBlocks();
         $this->makeupPages();
     }
@@ -48,7 +49,6 @@ class LarakitServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->larapackage('larakit/lk-makeup', 'lk-makeup');
     }
 
     /**

@@ -43,12 +43,11 @@ body {
 	font-family : Tahoma;
 	margin      : 0;
 	padding     : 0;
-	background  : url(/packages/makeup/img/photo-bg.png) repeat 0 0;
+	background  : url(/packages/larakit/lk-makeup/img/photo-bg.png) repeat 0 0;
 }
 .header {
 	padding       : 20px 20px 10px;
-	border-bottom : 1px solid #e06b64;
-	background  : url(/packages/makeup/img/header.png) repeat 0 0;
+	background  : #EB6251;
 	color : #ffffff;
 }
 .header:after {

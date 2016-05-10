@@ -1,0 +1,59 @@
+<div class="header">
+    <div class="row">
+        <div class="col-lg-4">
+            <select class="form-control disp-select page-selector">
+                <option value="/makeup"{% if 'makeup'==path %} selected{% endif %}>--выберите страницу или блок--
+                </option>
+                <optgroup label="СТРАНИЦЫ">
+                    {% if pages %}
+                        {% for b, data in pages %}
+                            {#<li><a href="/makeup/frame-{{ b }}" class="js-frame {% if block==b %}js-current{% endif %}" target="site">{{ b }}</a></li>#}
+                            {% set path_item = 'makeup/page-'~ b %}
+                            <option value="/{{ path_item }}"{% if path_item==path %} selected{% endif %}>{{ b|upper }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </optgroup>
+                <optgroup label="БЛОКИ">
+                    {% if blocks %}
+                        {% for b, data in blocks %}
+                            {#<li><a href="/makeup/frame-{{ b }}" class="js-frame {% if block==b %}js-current{% endif %}" target="site">{{ b }}</a></li>#}
+                            {% set path_item = 'makeup/block-'~ b %}
+                            <option value="/{{ path_item }}"{% if path_item==path %} selected{% endif %}>{{ b|upper }} {% if data.breakpoints() %}[{{ data.breakpoints()|join(', ') }}]{% endif %}
+                            </option>
+                        {% endfor %}
+                    {% endif %}
+                </optgroup>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            {% if themes %}
+                <div class="btn-group">
+                    {% for t in themes %}
+                        <button data-value="{{ t }}" type="button"
+                                class="btn btn-{% if (t==theme) or (not theme and loop.first) %}success active{% else %}default{% endif %} disp-btn theme-selector">{{ t }}</button>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-4">
+            <div class="btn-group pull-right">
+                {% if breakpoints %}
+                    {% for b, val in breakpoints %}
+                        <button data-value="{{ b }}" type="button"
+                                title="{{ val.title }}"
+                                class="btn btn-{% if b==breakpoint %}success active{% else %}default{% endif %} disp-btn breakpoint-selector">{{ val.text }}</button>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 text-sm">Отображаемый элемент</div>
+        <div class="col-lg-4 text-sm">
+            {% if themes %}
+                Тема оформления
+            {% endif %}
+        </div>
+        <div class="col-lg-4 text-right text-sm">Разрешения экрана</div>
+    </div>
+</div>

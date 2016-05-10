@@ -1,0 +1,7 @@
+{% include 'lk-makeup::!.partials.dispatcher' %}
+
+<div class="frame" {% if breakpoint %}style="margin:0 auto;width: {{ breakpoint }}px"{% endif %}>
+    <iframe src="/makeup/frame-block-{{ block }}?theme={{ theme }}"
+            name="site"
+            frameborder="0"></iframe>
+</div>

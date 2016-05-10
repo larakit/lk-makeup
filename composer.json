@@ -1,9 +1,11 @@
 {
     "name": "larakit/lk-makeup",
-    "description": "[Larakit] рабочий стол верстальщика",
+    "description": "Модуль работы с версткой",
+    "version": "5.0.0",
     "keywords": [
-
-    ],
+        "laravel 5",
+        "larakit"
+    ],	
     "license": "MIT",
     "authors": [
         {
@@ -12,6 +14,9 @@
         }
     ],
     "require": {
+        "snoopy/snoopy": "*",
+        "fzaninotto/faker": "*",
+        "larakit/sf-bootstrap": "*",
         "larakit/lk": "*"
     },
     "autoload": {

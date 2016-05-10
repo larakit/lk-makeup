@@ -48,7 +48,7 @@ class LarakitServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->larapackage('larakit/laravel-larakit-makeup', 'makeup', 'public');
+        $this->larapackage('larakit/lk-makeup', 'lk-makeup');
     }
 
     /**

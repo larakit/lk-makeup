@@ -1,6 +1,6 @@
 <div class="header">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-2">
             <select class="form-control disp-select page-selector">
                 <option value="/makeup"{% if 'makeup'==path %} selected{% endif %}>--выберите страницу или блок--
                 </option>
@@ -35,6 +35,9 @@
                 </div>
             {% endif %}
         </div>
+        <div class="col-lg-2">
+            <a href="/makeup/download?path={{ path }}&theme={{ theme }}" class="btn btn-primary btn-lg">Скачать шаблон</a>
+        </div>
         <div class="col-lg-4">
             <div class="btn-group pull-right">
                 {% if breakpoints %}
@@ -48,8 +51,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 text-sm">Отображаемый элемент</div>
-        <div class="col-lg-4 text-sm">
+        <div class="col-lg-2 text-sm">Отображаемый элемент</div>
+        <div class="col-lg-6 text-sm">
             {% if themes %}
                 Тема оформления
             {% endif %}

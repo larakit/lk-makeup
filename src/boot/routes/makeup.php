@@ -10,6 +10,13 @@
                     ->setNamespace('Larakit\Makeup\Controller')
                     ->put();
 
+\Larakit\Route\Route::add('makeup/download')
+                    ->setBaseUrl('/makeup/download')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('ControllerMakeup')
+                    ->setAction('download')
+                    ->put();
+
 \Larakit\Route\Route::add('makeup/block')
                     ->setBaseUrl('/makeup/block-{block}')
                     ->setNamespace('Larakit\Makeup\Controller')

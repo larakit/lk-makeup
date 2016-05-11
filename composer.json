@@ -17,6 +17,7 @@
         "snoopy/snoopy": "*",
         "fzaninotto/faker": "*",
         "larakit/sf-bootstrap": "*",
+        "codeless/ziparchiveex": "1.0.1",
         "larakit/lk": "*"
     },
     "autoload": {

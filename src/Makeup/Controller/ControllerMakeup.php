@@ -21,6 +21,17 @@ class ControllerMakeup extends ControllerIndex {
         return $this->response();
     }
 
+    function download() {
+        $path  = \Request::input('path');
+        $theme = \Request::input('theme');
+        $url = url(str_replace('/', '/frame-', $path)).'?theme='.$theme;
+        $content = file_get_contents($url);
+        $content = str_replace('href="/!', 'href="./!', $content);
+        $content = str_replace('href="/packages', 'href="./packages', $content);
+        dd(compact('path', 'theme', 'url', 'content'));
+        return $this->response();
+    }
+
     function block() {
         $block = \Route::input('block');
         $theme = \Request::input('theme');
@@ -65,7 +76,7 @@ class ControllerMakeup extends ControllerIndex {
     }
 
     function frame_page() {
-        $page                 = \Route::input('page');
+        $page  = \Route::input('page');
         $theme = \Request::input('theme');
         if($theme) {
             PageTheme::setCurrent($theme);

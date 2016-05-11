@@ -1,6 +1,6 @@
 <div class="header">
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-xs-2 col-xs-12">
             <select class="form-control disp-select page-selector">
                 <option value="/makeup"{% if 'makeup'==path %} selected{% endif %}>--выберите страницу или блок--
                 </option>
@@ -24,39 +24,37 @@
                     {% endif %}
                 </optgroup>
             </select>
+            Отображаемый элемент
         </div>
-        <div class="col-lg-4">
+        <div class="col-xs-3">
             {% if themes %}
-                <div class="btn-group">
-                    {% for t in themes %}
-                        <button data-value="{{ t }}" type="button"
-                                class="btn btn-{% if (t==theme) or (not theme and loop.first) %}success active{% else %}default{% endif %} disp-btn theme-selector">{{ t }}</button>
-                    {% endfor %}
+                <div>
+                    <div class="btn-group">
+                        {% for t in themes %}
+                            <button data-value="{{ t }}" type="button"
+                                    class="btn btn-{% if (t==theme) or (not theme and loop.first) %}primary active{% else %}default{% endif %} disp-btn theme-selector">{{ t }}</button>
+                        {% endfor %}
+                    </div>
                 </div>
-            {% endif %}
-        </div>
-        <div class="col-lg-4">
-            <div class="btn-group pull-right">
-                {% if breakpoints %}
-                    {% for b, val in breakpoints %}
-                        <button data-value="{{ b }}" type="button"
-                                title="{{ val.title }}"
-                                class="btn btn-{% if b==breakpoint %}success active{% else %}default{% endif %} disp-btn breakpoint-selector">{{ val.text }}</button>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-lg-2 text-right">
-            <a target="_blank" href="/makeup/download" class="btn btn-primary btn-lg">Скачать</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2 text-sm">Отображаемый элемент</div>
-        <div class="col-lg-4 text-sm">
-            {% if themes %}
                 Тема оформления
             {% endif %}
         </div>
-        <div class="col-lg-4 text-right text-sm">Разрешения экрана</div>
+        <div class="col-xs-5">
+            <div>
+                <div class="btn-group">
+                    {% if breakpoints %}
+                        {% for b, val in breakpoints %}
+                            <button data-value="{{ b }}" type="button"
+                                    title="{{ val.title }}"
+                                    class="btn btn-{% if b==breakpoint %}primary active{% else %}default{% endif %} disp-btn breakpoint-selector">{{ val.text }}</button>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            Разрешения экрана
+        </div>
+        <div class="col-xs-2 text-right">
+            <a target="_blank" href="/makeup/download" class="btn btn-primary btn-lg">Скачать</a>
+        </div>
     </div>
 </div>

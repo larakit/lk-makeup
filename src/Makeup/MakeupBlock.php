@@ -23,8 +23,9 @@ class MakeupBlock {
         $this->css();
     }
 
-    function setParams($params){
+    function setParams($params) {
         $this->params = $params;
+
         return $this;
     }
 
@@ -37,12 +38,12 @@ class MakeupBlock {
         return null;
     }
 
-    function breakpoints(){
+    function breakpoints() {
         return $this->breakpoints;
     }
 
-    function breakpoint($size){
-        $size = (int)$size;
+    function breakpoint($size) {
+        $size = (int) $size;
         Manager::register_breakpoint($size);
         $this->breakpoints[$size] = $size;
         rsort($this->breakpoints);
@@ -67,24 +68,24 @@ class MakeupBlock {
             }
         }
 
-        //        foreach($this->breakpoints as $breakpoint){
-        //            $f = '/!/static/blocks/' . $this->name . '/breakpoints/'.$breakpoint.'.css';
-        //            if(file_exists(public_path(trim($f, '/')))){
-        //                $ret[] = $f;
-        //            }
-        //        }
         return $ret;
     }
 
     function __toString() {
-        foreach($this->css() as $css) {
-            Css::instance()->add($css);
-        }
-        $js = $this->js();
-        if($js) {
-            Js::instance()->add($js);
-        }
+        try {
 
-        return (string) \View::make('!.makeup.blocks.' . $this->name, $this->params);
+            foreach($this->css() as $css) {
+                Css::instance()->add($css);
+            }
+            $js = $this->js();
+            if($js) {
+                Js::instance()->add($js);
+            }
+
+            return (string) \View::make('!.makeup.blocks.' . $this->name, $this->params);
+        }
+        catch(\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

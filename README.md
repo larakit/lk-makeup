@@ -78,7 +78,7 @@ $composer require larakit/lk-makeup
 
 Заметили разницу? Верно: вверху инструмента появилась кнопка с брейкпоинтом 768px. Кликнем на нее.
 
-<img src="https://habrastorage.org/files/0db/ccf/dd4/0dbccfdd417644fe84062a758abfd5b5.gif" />
+<img src="https://habrastorage.org/files/e7f/4a4/a93/e7f4a4a9365f4949a16b13ee9027bd10.gif" />
 
 Т.е. не дергая браузер, мы одним нажатием кнопки с брейкпоинтом можем смотреть как наш шаблон будет адаптироваться под различные разрешения.
 
@@ -93,7 +93,7 @@ $composer require larakit/lk-makeup
 
 смотрим результат
 
-<img src="https://habrastorage.org/files/9f3/42b/168/9f342b1683a743e485da18de6db9f44b.png" />
+<img src="https://habrastorage.org/files/0db/ccf/dd4/0dbccfdd417644fe84062a758abfd5b5.gif" />
 
 заметьте - не важно в каком порядке регистрировались брейкпоинты, они все равно были отсортированы в порядке убывания.
 

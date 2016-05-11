@@ -4,10 +4,12 @@
 * соблюдение корректности отображения верстки для разных разрешений (путем установки необходимого количества брейкпоинтов)
 * возможность добавления тем оформления
 * возможность просмотреть отдельный блок (это очень важно в момент натягивания верстки)
+* возможность легкой кастомизации (темы оформления), вы, например, можете запросто сделать темы оформления для Android, iOS, Windows
 * отсутствие необходимости сжимать и разжимать браузер, чтобы быстро продемонстрировать адаптивность страницы
 * рабочий интерфейс понятный и верстальщику, и принимающей стороне
 * возможность скачать готовую верстку одним архивом (HTML включая JS/CSS/images/fonts)
 * возможность изменить сверстанный блок, без необходимости внесения правок во всех страницах (например, при 30 макетах изменение копирайта в footer - это убийство времени, обычно забивают на это).
+* ну, и самое главное лично для нас - возможность работать над одним проектом сразу нескольким верстальщикам, причем разной квалификации (начинающим дать простые блоки в работу, опытным - доверить сборку страниц и сложные адаптации)
  
 ###Теперь о том, чем придется пожертвовать:
 * придется верстальщику настроить рабочее место (поставить LAMP или OpenServer для Windows, а также установить Laravel)
@@ -43,9 +45,28 @@ $composer require larakit/lk-makeup
 * в директорию ./public/!/static/img - картинки 
 * в директорию ./public/!/static/fonts - шрифты
 
-Подключим их, для этого в файле ./app/Http/page.php 
+Подключим их, для этого в файле 
 
-<img src="https://habrastorage.org/files/863/3b7/4de/8633b74de24e4a6588e5574ac2dd3d91.png" />
+~~~
+./app/Http/page.php
+~~~
+
+~~~php
+<?php
+
+\Larakit\StaticFiles\Manager::package('app')
+    ->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
+    ->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
+    ->usePackage('larakit/sf-bootstrap')
+    ->css('/!/static/css/common.css')
+    ->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    ->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    ->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    ->js('/!/static/js/classie.js')
+    ->js('/!/static/js/cbpAnimatedHeader.js')
+    ->js('/!/static/js/jqBootstrapValidation.js');
+
+~~~
 
 
 ###3. Формируем блок
@@ -114,7 +135,51 @@ $composer require larakit/lk-makeup
 <img src="https://habrastorage.org/files/5a9/d5c/7d1/5a9d5c7d1eed423380fc31238221db56.gif" />
 
 
+#5. Работа с темами оформления
+Остался неохваченным еще один момент - темы оформления. Это тоже делается достаточно просто:
 
+зарегистрируем темы оформления в page.php
+
+<img src="https://habrastorage.org/files/138/2f7/611/1382f761139a46f58344a038375eefaf.png" />
+
+Чтобы код оставался понятным другим - рекомендуется темы оформления разнести по разным файлам 
+~~~
+./public/!/static/css/themes/theme-name.css
+~~~
+и подключить в 
+~~~
+./app/Http/page.php
+~~~
+
+~~~php
+<?php
+
+\Larakit\StaticFiles\Manager::package('app')
+    ->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
+    ->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
+    ->usePackage('larakit/sf-bootstrap')
+    ->css('/!/static/css/common.css')
+    //темы оформления
+    ->css('/!/static/css/themes/windows.css')
+    ->css('/!/static/css/themes/android.css')
+    ->css('/!/static/css/themes/ios.css')
+    
+    ->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    ->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    ->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    ->js('/!/static/js/classie.js')
+    ->js('/!/static/js/cbpAnimatedHeader.js')
+    ->js('/!/static/js/jqBootstrapValidation.js');
+
+~~~
+
+Внутри каждой темы сделано небольшое изменение, чтобы показать принцип работы - раскрашен navbar & header.
+
+<img src="https://habrastorage.org/files/e41/976/49b/e4197649bf1347a9b9a79309350e491b.gif" />
+
+А принцип заключается в том, что элементу BODY добавляется класс "theme-*", где вместо звездочки пишется название темы, а затем кастомизируются элементы лежащие внутри
+
+<img src="https://habrastorage.org/files/5e4/6e8/24c/5e46e824ca0c42dfbafc965b83bab000.png" />
 
 
 

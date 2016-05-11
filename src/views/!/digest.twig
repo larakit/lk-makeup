@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Larakit-makeup">
+
+    <title>Верстка (справочник страниц и блоков)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top    : 50px;
+            padding-bottom : 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        {% if digest.pages %}
+            <div class="col-lg-6">
+                <h1>СТРАНИЦЫ</h1>
+                <div class="row marketing">
+                    {% for page, themes in digest.pages %}
+                        <div class="col-lg-6">
+                            <h4>{{ page }}</h4>
+                            <ol class="breadcrumb">
+                                {% for theme, url in themes %}
+                                    <li><a href="./{{ url }}">{{ theme }}</a></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if digest.blocks %}
+            <div class="col-lg-6">
+                <h1>БЛОКИ</h1>
+                <div class="row marketing">
+                    {% for block, themes in digest.blocks %}
+                        <div class="col-lg-6">
+                            <h4>{{ block }}</h4>
+                            <ol class="breadcrumb">
+                                {% for theme, url in themes %}
+                                    <li><a href="./{{ url }}">{{ theme }}</a></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; Larakit, Inc.</p>
+    </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>
+
+

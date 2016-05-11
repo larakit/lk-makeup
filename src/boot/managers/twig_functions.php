@@ -68,7 +68,7 @@ function faker_rus() {
     return \Larakit\Makeup\Manager::$blocks;
 });
 \Larakit\Twig::register_function('makeup_block', function ($name, $params = []) {
-    return \Larakit\Makeup\Manager::block($name);
+    return \Larakit\Makeup\Manager::block($name)->setParams($params);
 });
 View::composer('lk-makeup::!.layouts.page', function ($view) {
     $view->with('theme', Request::input('theme'));

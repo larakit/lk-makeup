@@ -11,6 +11,11 @@ class Manager {
         return '-' . $code;
     }
 
+    /**
+     * @param $name
+     *
+     * @return MakeupPage
+     */
     static function page($name) {
         if(!isset(self::$pages[$name])) {
             self::$pages[$name] = new MakeupPage($name);

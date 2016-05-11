@@ -15,11 +15,17 @@ use Larakit\StaticFiles\Js;
 class MakeupBlock {
 
     protected $name;
+    protected $params;
     protected $breakpoints = [];
 
     function __construct($name) {
         $this->name = $name;
         $this->css();
+    }
+
+    function setParams($params){
+        $this->params = $params;
+        return $this;
     }
 
     function js() {
@@ -79,6 +85,6 @@ class MakeupBlock {
             Js::instance()->add($js);
         }
 
-        return (string) \View::make('!.makeup.blocks.' . $this->name);
+        return (string) \View::make('!.makeup.blocks.' . $this->name, $this->params);
     }
 }

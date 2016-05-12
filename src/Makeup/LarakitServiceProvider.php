@@ -3,6 +3,7 @@ namespace Larakit\Makeup;
 
 use Larakit\Helper\HelperFile;
 use Larakit\ServiceProvider;
+use Larakit\StaticFiles\Css;
 
 class LarakitServiceProvider extends ServiceProvider {
 
@@ -27,6 +28,7 @@ class LarakitServiceProvider extends ServiceProvider {
             return true;
         $themes = [];
         foreach (\File::allFiles($themes_path) as $f) {
+            Css::instance()->add('/!/static/css/themes/'.$f->getFilename());
             $themes[] = str_replace('.css', '', $f->getFilename());
         }
         if(count($themes)) {

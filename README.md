@@ -139,40 +139,12 @@ $composer require larakit/lk-makeup
 #5. Работа с темами оформления
 Остался неохваченным еще один момент - темы оформления. Это тоже делается достаточно просто:
 
-зарегистрируем темы оформления в page.php
-
-<img src="https://habrastorage.org/files/138/2f7/611/1382f761139a46f58344a038375eefaf.png" />
-
-Чтобы код оставался понятным другим - рекомендуется темы оформления разнести по разным файлам 
+в директорию
 ~~~
-./public/!/static/css/themes/theme-name.css
-~~~
-и подключить в 
-~~~
-./app/Http/page.php
+./public/!/static/css/themes/
 ~~~
 
-~~~php
-<?php
-
-\Larakit\StaticFiles\Manager::package('app')
-    ->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
-    ->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
-    ->usePackage('larakit/sf-bootstrap')
-    ->css('/!/static/css/common.css')
-    //темы оформления
-    ->css('/!/static/css/themes/windows.css')
-    ->css('/!/static/css/themes/android.css')
-    ->css('/!/static/css/themes/ios.css')
-    
-    ->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-    ->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-    ->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-    ->js('/!/static/js/classie.js')
-    ->js('/!/static/js/cbpAnimatedHeader.js')
-    ->js('/!/static/js/jqBootstrapValidation.js');
-
-~~~
+положить файлы с именем тем оформления (например, android.css, windows.css, ios.css). Все, вы ожидали сложностей?
 
 Внутри каждой темы сделано небольшое изменение, чтобы показать принцип работы - раскрашен navbar & header.
 

@@ -18,6 +18,21 @@ class LarakitServiceProvider extends ServiceProvider {
         $this->larapackage('larakit/lk-makeup', 'lk-makeup');
         $this->makeupBlocks();
         $this->makeupPages();
+        $this->makeupThemes();
+    }
+
+    function makeupThemes() {
+        $themes_path = public_path('!/static/css/themes');
+        if (!file_exists($themes_path))
+            return true;
+        $themes = [];
+        foreach (\File::allFiles($themes_path) as $f) {
+            $themes[] = str_replace('.css', '', $f->getFilename());
+        }
+        if(count($themes)) {
+            \Larakit\Page\PageTheme::setThemes($themes);
+        }
+
     }
 
     function makeupPages() {

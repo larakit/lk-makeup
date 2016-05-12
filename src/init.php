@@ -10,3 +10,5 @@ Larakit\Boot::register_middleware(\Larakit\Makeup\MakeupMiddleware::class);
                             ->addExclude('*')
                             ->addExclude('makeup/frame*')
                             ->addInclude('makeup*');
+
+\Larakit\Twig::register_global('MAKEUP_URL', env('MAKEUPDIR', '!/makeup'));

@@ -25,6 +25,7 @@ class ControllerMakeup extends ControllerIndex {
     function prepare_content($url) {
         $content = file_get_contents($url);
         $content = str_replace('href="//', 'href="http://', $content);
+        $content = str_replace('src="//', 'src="http://', $content);
         $content = str_replace('href="/!', 'href="./!', $content);
         $content = str_replace('src="/!', 'src="./!', $content);
         $content = str_replace('href="/packages', 'href="./packages', $content);
@@ -81,13 +82,12 @@ class ControllerMakeup extends ControllerIndex {
         // Load Zippy
         $zip_path = storage_path(date('H_i_s') . '.zip');
         $zippy    = Zippy::load();
-        $archive  = $zippy->create($zip_path, $contents, true);
+        $zippy->create($zip_path, $contents, true);
         foreach($tmp_names as $tmp_name) {
             unlink($tmp_name);
         }
 
         return \Response::download($zip_path);
-        dd($archive);
     }
 
     function block() {
@@ -139,8 +139,7 @@ class ControllerMakeup extends ControllerIndex {
         if($theme) {
             PageTheme::setCurrent($theme);
         }
-
-        return $this->layout('lk-makeup::!.layouts.frame_page')
+        return $this->layout('larakit-makeup::pages.'.$page)
                     ->response([
                         'page'  => $page,
                         'theme' => $theme,

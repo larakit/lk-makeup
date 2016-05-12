@@ -30,7 +30,7 @@ class MakeupBlock {
     }
 
     function js() {
-        $f = '/!/static/blocks/' . $this->name . '/block.js';
+        $f = Manager::getUrl('blocks/'.$this->name . '/block.js');
         if(file_exists(public_path(trim($f, '/')))) {
             return $f;
         }
@@ -38,25 +38,14 @@ class MakeupBlock {
         return null;
     }
 
-    function breakpoints() {
-        return $this->breakpoints;
-    }
-
-    function breakpoint($size) {
-        $size = (int) $size;
-        Manager::register_breakpoint($size);
-        $this->breakpoints[$size] = $size;
-        rsort($this->breakpoints);
-    }
-
     function css() {
         $ret = [];
-        $f   = '/!/static/blocks/' . $this->name . '/block.css';
-        if(file_exists(public_path(trim($f, '/')))) {
-            $ret[] = $f;
+        $prefix = 'blocks/'.$this->name.'/' ;
+        if(file_exists(Manager::getPath($prefix . 'block.css'))) {
+            $ret[] = Manager::getUrl($prefix . 'block.css');
         }
-        $suffix_breakpoints = '/!/static/blocks/' . $this->name . '/';
-        $dir_breakpoints    = public_path(trim($suffix_breakpoints, '/'));
+        $suffix_breakpoints = Manager::getUrl($prefix);
+        $dir_breakpoints    = Manager::getPath($prefix);
         if(file_exists($dir_breakpoints)) {
             foreach(\File::allFiles($dir_breakpoints) as $css) {
                 $fn   = $css->getFilename();
@@ -71,18 +60,32 @@ class MakeupBlock {
         return $ret;
     }
 
+    function breakpoints() {
+        return $this->breakpoints;
+    }
+
+    function breakpoint($size) {
+        $size = (int) $size;
+        Manager::register_breakpoint($size);
+        $this->breakpoints[$size] = $size;
+        rsort($this->breakpoints);
+    }
+
     function __toString() {
         try {
-
+            \Larakit\StaticFiles\Manager::package('makeup-blocks')
+                                        ->usePackage('common');
             foreach($this->css() as $css) {
-                Css::instance()->add($css);
+                \Larakit\StaticFiles\Manager::package('makeup-blocks')
+                    ->css($css);
             }
             $js = $this->js();
             if($js) {
-                Js::instance()->add($js);
+                \Larakit\StaticFiles\Manager::package('app')
+                                            ->js($js);
             }
 
-            return (string) \View::make('!.makeup.blocks.' . $this->name, $this->params);
+            return (string) \View::make('larakit-makeup::blocks.' . $this->name . '.block', $this->params);
         }
         catch(\Exception $e) {
             return $e->getMessage();

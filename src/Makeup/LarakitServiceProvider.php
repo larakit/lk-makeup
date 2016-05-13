@@ -16,7 +16,7 @@ class LarakitServiceProvider extends ServiceProvider {
     protected $defer = false;
 
     public function boot() {
-        Manager::setPrefix(env('MAKEUPDIR', '!/makeup'));
+        Manager::setPrefix(env('MAKEUPDIR', '!/static'));
         $this->larapackage('larakit/lk-makeup', 'lk-makeup');
         $this->loadViewsFrom(Manager::getPath(), 'larakit-makeup');
         $this->makeupBlocks();

@@ -39,12 +39,28 @@ $composer require larakit/lk-makeup
 <img src="https://habrastorage.org/files/7fb/947/00d/7fb94700d837440aa4c9ac82ef8e0793.png" />
 Если до этого момента у вас все получилось, установка считается законченной. Поздравляем!
 
-###2. Зададим основные стили проекта
-Для этого мы всю common-статику проекта (типографика, картинки), другими словами то, что будет использоваться сразу в нескольких блоках одновременно, распределим следующим образом:
-* в директорию ./public/!/static/css - стили
-* в директорию ./public/!/static/js - скрипты
-* в директорию ./public/!/static/img - картинки 
-* в директорию ./public/!/static/fonts - шрифты
+###2. Определимся со структурой и зададим основные стили проекта
+Вам придется работать со следующей файловой структурой:
+
+Путь | Описание
+------------ | -------------
+./app/Http/page.php | тут все настройки страницы
+./app/Http/page.php |  тут все настройки страницы
+./public/!/static/blocks/ |  блоки 
+./public/!/static/blocks/BLOCK_NAME/ | один блок
+./public/!/static/blocks/BLOCK_NAME/block.twig | шаблон блока
+./public/!/static/blocks/BLOCK_NAME/block.css | стили блока
+./public/!/static/blocks/BLOCK_NAME/<N1>.css |  брейкпоинт на <N1> пикселей
+./public/!/static/blocks/BLOCK_NAME/<N2>.css |  брейкпоинт на <N2> пикселей
+./public/!/static/common/ |  общесайтовая статика
+./public/!/static/common/css/ |  стили (любое содержимое внутри, подключается вручную)
+./public/!/static/common/js/ |  скрипты (любое содержимое внутри, подключается вручную)
+./public/!/static/common/img/ |  картинки 
+./public/!/static/common/fonts/ |  шрифты
+./public/!/static/pages/ |  страницы
+./public/!/static/pages/PAGE_NAME.twig |  шаблон страницы
+./public/!/static/themes/ |  темы оформления
+./public/!/static/themes/<theme>.css |  темы оформления
 
 Подключим их, для этого в файле 
 
@@ -52,28 +68,53 @@ $composer require larakit/lk-makeup
 ./app/Http/page.php
 ~~~
 
+пропишем
+
 ~~~php
 <?php
-
-\Larakit\StaticFiles\Manager::package('app')
-    ->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
-    ->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
-    ->usePackage('larakit/sf-bootstrap')
-    ->css('/!/static/css/common.css')
-    ->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-    ->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-    ->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-    ->js('/!/static/js/classie.js')
-    ->js('/!/static/js/cbpAnimatedHeader.js')
-    ->js('/!/static/js/jqBootstrapValidation.js');
-
+//определим пакет "common"
+\Larakit\StaticFiles\Manager::package('common')
+//подключим шрифты
+->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
+->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
+//поставим зависимость от пакета с бутстрапом (это значит, что он будет подключен ДО пакета common)
+->usePackage('larakit/sf-bootstrap')
+//подключим общие стили
+->css('/!/static/common/css/common.css')
+//подключим внешние скрипты из CDN
+->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+//подключим локальные скрипты
+->js('/!/static/common/js/classie.js')
+->js('/!/static/common/js/cbpAnimatedHeader.js')
+->js('/!/static/common/js/jqBootstrapValidation.js');
 ~~~
 
 
-###3. Формируем блок
-<img src="https://habrastorage.org/files/7ba/6b3/016/7ba6b301668046f3a70fe3151dea448f.png" />
+###3. Формируем первый блок "header"
+~~~html
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <img class="img-responsive" src="/!/makeup/common/img/profile.png" alt="">
+                <div class="intro-text">
+                    <span class="name">Start Bootstrap</span>
+                    <hr class="star-light">
+                    <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+~~~
 
-шаблоны блоков у нас хранятся в директории  ./resources/views/!/makeup/blocks/
+сохраняем его в 
+~~~
+./public/!/static/blocks/header/block.twig
+~~~
 
 <img src="https://habrastorage.org/files/7b4/9f1/114/7b49f111418c4df5aad68cc799534cba.png" />
 

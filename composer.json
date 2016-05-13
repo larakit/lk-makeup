@@ -1,6 +1,6 @@
 {
     "name": "larakit/lk-makeup",
-    "description": "Модуль работы с версткой",
+    "description": "[Larakit HtmlMakeup] инструмент верстальщика",
     "version": "5.0.0",
     "keywords": [
         "laravel 5",

@@ -72,68 +72,64 @@ $composer require larakit/lk-makeup
 
 ~~~php
 <?php
-//определим пакет "common"
 \Larakit\StaticFiles\Manager::package('common')
-//подключим шрифты
-->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
-->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
-//поставим зависимость от пакета с бутстрапом (это значит, что он будет подключен ДО пакета common)
-->usePackage('larakit/sf-bootstrap')
-//подключим общие стили
-->css('/!/static/common/css/common.css')
-//подключим внешние скрипты из CDN
-->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-//подключим локальные скрипты
-->js('/!/static/common/js/classie.js')
-->js('/!/static/common/js/cbpAnimatedHeader.js')
-->js('/!/static/common/js/jqBootstrapValidation.js');
+    //подключим шрифты
+    ->css('//fonts.googleapis.com/css?family=Montserrat:400,700')
+    ->css('//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic')
+    //укажем зависимость от twitter bootstrap
+    //это будет означать то, что он будет подключаться до этого пакета
+    ->usePackage('larakit/sf-bootstrap')
+    //подключим локальные common-стили
+    ->css('/!/static/common/css/common.css')
+
+    //подключим скрипты библиотек из CDN
+    ->js('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    ->js('//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    ->js('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    //подключим локальные common-скрипты
+    ->js('/!/static/common/js/classie.js')
+    ->js('/!/static/common/js/cbpAnimatedHeader.js')
+    ->js('/!/static/common/js/jqBootstrapValidation.js');
 ~~~
 
 
-###3. Формируем первый блок "header"
-~~~html
-<!-- Header -->
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <img class="img-responsive" src="/!/makeup/common/img/profile.png" alt="">
-                <div class="intro-text">
-                    <span class="name">Start Bootstrap</span>
-                    <hr class="star-light">
-                    <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+###3. Формируем первый блок "navbar"
+
+HTML-код шаблона сохраняем в файле
+~~~
+./public/!/static/blocks/navbar/block.twig
 ~~~
 
-сохраняем его в 
-~~~
-./public/!/static/blocks/header/block.twig
-~~~
-
-<img src="https://habrastorage.org/files/7b4/9f1/114/7b49f111418c4df5aad68cc799534cba.png" />
+<img src="https://habrastorage.org/files/be5/312/e21/be5312e215b3439b893251fad736830a.png" />
 
 обновляем страницу и видим, что в разделе блоки автоматически появился наш блок. Выбираем его.
 
-<img src="https://habrastorage.org/files/356/7d1/744/3567d1744b464586b7cf540385b3d871.png" />
+<img src="https://habrastorage.org/files/fc5/a69/bb0/fc5a69bb026d4f4ca8da9d51c65d1e53.png" />
 
-Блок голый, без оформления. Прямо "CSS naked day" какой то!
+Уже симпатично, но как то дефолтно, добавим ему стилей.
 
-Добавим ему стилей.
+Для этого в файл
+~~~
+./public/!/static/blocks/navbar/block.css
+~~~
+запишем CSS данного блока
 
-<img src="https://habrastorage.org/files/218/74c/bb5/21874cbb5cf044118001fedaca11c9d4.png" />
+<img src="https://habrastorage.org/files/009/6f9/b1e/0096f9b1e2f04f9dbfdda5d5df6b3b60.png" />
 
-Согласитесь, совсем другое дело!
+Снова обновляем страницу
 
-Но в макете для этого блока дизайнер нарисовал адаптивность на 768 пикселях. Это очень просто: добавляем новый файл стилей в папке статики блока с названием брейкпоинта:
-./public/!/static/css/locks/navbar/768.css
+<img src="https://habrastorage.org/files/b2b/61d/b74/b2b61db74bc1402e8d9c737d6c4f1a93.png" />
 
-<img src="https://habrastorage.org/files/ff9/c8c/e19/ff9c8ce1953d48c08df5c24a33c5e941.png" />
+Уже лучше!
+
+Но в макете для этого блока дизайнер нарисовал адаптивность на 768 пикселях. 
+
+С Larkit Makeup это очень просто: добавляем новый файл стилей в папке статики блока с названием брейкпоинта:
+~~~
+./public/!/static/blocks/navbar/768.css
+~~~
+
+<img src="https://habrastorage.org/files/3b6/f7a/26d/3b6f7a26d5784755acdf772ae42e3ec9.png" />
 
 и обновляем страницу
 
@@ -145,14 +141,14 @@ $composer require larakit/lk-makeup
 
 Т.е. не дергая браузер, мы одним нажатием кнопки с брейкпоинтом можем смотреть как наш шаблон будет адаптироваться под различные разрешения.
 
-Главный разработчик сайта Kremlin.ru Артём Геллер давал интервью сайту https://vc.ru/p/kremlin-ru :
+Главный разработчик сайта Kremlin.ru Артём Геллер давая интервью сайту https://vc.ru/p/kremlin-ru, сказал:
 ~~~
-В итоге для того, чтобы идеально отобразить сайт на всех типах устройств с промежуточными значениями, 
-нам понадобилось 9 брейкпоинтов. 
+В итоге для того, чтобы идеально отобразить сайт на всех типах устройств 
+с промежуточными значениями, нам понадобилось 9 брейкпоинтов. 
 ~~~
 Действительно, нам тоже надо больше брейкпоинтов, даже если под них специально не рисовался макет, просто чтобы не упустить где может расползтись верстка.
 
-<img src="https://habrastorage.org/files/e7f/867/ea7/e7f867ea7f404b118b68d5ea8aefada2.png" />
+<img src="https://habrastorage.org/files/d0d/720/ff2/d0d720ff20a24eaab46a50dccbdf6f52.png" />
 
 смотрим результат
 

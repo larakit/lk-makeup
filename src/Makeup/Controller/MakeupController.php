@@ -2,21 +2,14 @@
 namespace Larakit\Makeup\Controller;
 
 use Alchemy\Zippy\Zippy;
-use Illuminate\Support\Arr;
-use Larakit\Controller\ControllerIndex;
-use Larakit\Helper\HelperFile;
+use Larakit\Controller;
 use Larakit\Makeup\Manager;
 use Larakit\Page\Page;
 use Larakit\Page\PageTheme;
 
-class ControllerMakeup extends ControllerIndex {
+class MakeupController extends Controller {
 
     protected $layout = 'lk-makeup::!.layouts.default';
-
-    function __construct() {
-        parent::__construct();
-        $this->addBreadCrumb('makeup');
-    }
 
     function index() {
         return $this->response();

@@ -18,7 +18,6 @@
         "snoopy/snoopy": "*",
         "fzaninotto/faker": "*",
         "larakit/sf-bootstrap": "*",
-        "codeless/ziparchiveex": "1.0.1",
         "alchemy/zippy": "^0.3.5",
         "larakit/lk": "*"
     },

@@ -109,7 +109,7 @@ class MakeupController extends Controller {
                     ]);
     }
 
-    function frame_block() {
+    function frameBlock() {
         $block = \Route::input('block');
         Page::body()
             ->setAttribute('class', '');
@@ -126,7 +126,7 @@ class MakeupController extends Controller {
                     ]);
     }
 
-    function frame_page() {
+    function framePage() {
         $page  = \Route::input('page');
         $theme = \Request::input('theme');
         if($theme) {

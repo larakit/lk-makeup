@@ -15,7 +15,7 @@
     ->setBaseUrl('/makeup/download')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
+    ->setController('Makeup')
     ->setAction('download')
     ->put();
 
@@ -23,7 +23,7 @@
     ->setBaseUrl('/makeup/block-{block}')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
+    ->setController('Makeup')
     ->setAction('block')
     ->put();
 
@@ -31,7 +31,7 @@
     ->setBaseUrl('/makeup/page-{page}')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
+    ->setController('Makeup')
     ->setAction('page')
     ->put();
 
@@ -39,23 +39,23 @@
     ->setBaseUrl('/makeup/frame-block-{block}')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
-    ->setAction('frame_page')
+    ->setController('Makeup')
+    ->setAction('frameBlock')
     ->put();
 
 \Larakit\Route\Route::group('makeup/frame_page')
     ->setBaseUrl('/makeup/frame-page-{page}')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
-    ->setAction('frame_page')
+    ->setController('Makeup')
+    ->setAction('framePage')
     ->put();
 
 \Larakit\Route\Route::group('lorempixel')
     ->setBaseUrl('/!/lorempixel/{w}x{h}/{cat}/{number}.jpeg')
     ->setNamespace('Larakit\Makeup\Controller')
     ->routeIndex()
-    ->setController('ControllerMakeup')
+    ->setController('Makeup')
     ->setAction('lorempixel')
     ->put();
 

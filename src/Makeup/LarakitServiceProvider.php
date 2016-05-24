@@ -49,7 +49,7 @@ class LarakitServiceProvider extends ServiceProvider {
     }
 
     function makeupPages() {
-        $pages_path = Manager::getPath('pages');
+        $pages_path = HelperFile::normalizeFilePath(Manager::getPath('pages'));
         if(!file_exists($pages_path)) {
             return true;
         }
@@ -59,7 +59,7 @@ class LarakitServiceProvider extends ServiceProvider {
     }
 
     function makeupBlocks() {
-        $blocks_path = Manager::getPath('blocks');
+        $blocks_path = HelperFile::normalizeFilePath(Manager::getPath('blocks'));
         if(!file_exists($blocks_path)) {
             return true;
         }

@@ -49,7 +49,7 @@ class LarakitServiceProvider extends ServiceProvider {
     }
 
     function makeupPages() {
-        $pages_path = HelperFile::normalizeFilePath(Manager::getPath('pages'));
+        $pages_path = Manager::getPath('pages');
         if(!file_exists($pages_path)) {
             return true;
         }

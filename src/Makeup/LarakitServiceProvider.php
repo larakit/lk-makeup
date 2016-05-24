@@ -26,46 +26,42 @@ class LarakitServiceProvider extends ServiceProvider {
 
     function makeupThemes() {
         $themes_path = Manager::getPath('themes');
-        if(!file_exists($themes_path)) {
-            return true;
-        }
-        $themes = [];
-        $theme  = \Request::input('theme');
-        \Larakit\StaticFiles\Manager::package('makeup-themes')
-                                    ->usePackage('makeup-blocks');
+        if(file_exists($themes_path)) {
+            $themes = [];
+            $theme  = \Request::input('theme');
+            \Larakit\StaticFiles\Manager::package('makeup-themes')
+                ->usePackage('makeup-blocks');
 
-        foreach(\File::allFiles($themes_path) as $f) {
-            $name = str_replace('.css', '', $f->getFilename());
-            if($theme == $name) {
-                \Larakit\StaticFiles\Manager::package('makeup-themes')
-                                            ->css(Manager::getUrl('themes/' . $name . '.css'));
+            foreach(\File::allFiles($themes_path) as $f) {
+                $name = str_replace('.css', '', $f->getFilename());
+                if($theme == $name) {
+                    \Larakit\StaticFiles\Manager::package('makeup-themes')
+                        ->css(Manager::getUrl('themes/' . $name . '.css'));
+                }
+                $themes[$name] = $name;
             }
-            $themes[$name] = $name;
+            if(count($themes)) {
+                \Larakit\Page\PageTheme::setThemes($themes);
+            }
         }
-        if(count($themes)) {
-            \Larakit\Page\PageTheme::setThemes($themes);
-        }
-
     }
 
     function makeupPages() {
         $pages_path = Manager::getPath('pages');
-        if(!file_exists($pages_path)) {
-            return true;
-        }
-        foreach(\File::allFiles($pages_path) as $file) {
-            Manager::page(str_replace('.twig', '', $file->getFilename()));
+        if(file_exists($pages_path)) {
+            foreach(\File::allFiles($pages_path) as $file) {
+                Manager::page(str_replace('.twig', '', $file->getFilename()));
+            }
         }
     }
 
     function makeupBlocks() {
         $blocks_path = HelperFile::normalizeFilePath(Manager::getPath('blocks'));
-        if(!file_exists($blocks_path)) {
-            return true;
-        }
-        foreach(\File::directories($blocks_path) as $path) {
-            $path = HelperFile::normalizeFilePath($path);
-            Manager::block(trim(str_replace($blocks_path, '', $path), '/'));
+        if(file_exists($blocks_path)) {
+            foreach(\File::directories($blocks_path) as $path) {
+                $path = HelperFile::normalizeFilePath($path);
+                Manager::block(trim(str_replace($blocks_path, '', $path), '/'));
+            }
         }
     }
 

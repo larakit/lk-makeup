@@ -28,9 +28,9 @@ class MakeupController extends Controller {
     }
 
     function download() {
-        $blocks    = array_keys(\Larakit\Makeup\Manager::$blocks);
+        $blocks    = array_keys((array)\Larakit\Makeup\Manager::$blocks);
         $themes    = ['default' => 'default'] + \Larakit\Page\PageTheme::getThemes();
-        $pages     = array_keys(\Larakit\Makeup\Manager::$pages);
+        $pages     = array_keys((array)\Larakit\Makeup\Manager::$pages);
         $contents  = [
             '!'        => public_path('!/'),
             'packages' => public_path('packages'),

@@ -87,7 +87,7 @@ class MakeupController extends Controller {
         $block = \Route::input('block');
         $theme = \Request::input('theme');
 
-        return $this->layout('lk-makeup::!.layouts.block')
+        return $this->setLayout('lk-makeup::!.layouts.block')
                     ->response([
                         'blocks' => Manager::$blocks,
                         'theme'  => $theme,
@@ -100,7 +100,7 @@ class MakeupController extends Controller {
         $page  = \Route::input('page');
         $theme = \Request::input('theme');
 
-        return $this->layout('lk-makeup::!.layouts.page')
+        return $this->setLayout('lk-makeup::!.layouts.page')
                     ->response([
                         'pages' => Manager::$pages,
                         'theme' => $theme,
@@ -119,7 +119,7 @@ class MakeupController extends Controller {
                 ->addClass('theme--' . $theme);
         }
 
-        return $this->layout('lk-makeup::!.layouts.frame_block')
+        return $this->setLayout('lk-makeup::!.layouts.frame_block')
                     ->response([
                         'block' => $block,
                         'theme' => $theme,
@@ -132,7 +132,7 @@ class MakeupController extends Controller {
         if($theme) {
             PageTheme::setCurrent($theme);
         }
-        return $this->layout('larakit-makeup::pages.'.$page)
+        return $this->setLayout('larakit-makeup::pages.'.$page)
                     ->response([
                         'page'  => $page,
                         'theme' => $theme,

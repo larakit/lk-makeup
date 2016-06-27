@@ -111,11 +111,11 @@ class MakeupController extends Controller {
 
     function frameBlock() {
         $block = \Route::input('block');
-        Page::body()
+        \LaraPage::body()
             ->setAttribute('class', '');
         $theme = \Request::input('theme');
         if($theme) {
-            Page::body()
+            \LaraPage::body()
                 ->addClass('theme--' . $theme);
         }
 

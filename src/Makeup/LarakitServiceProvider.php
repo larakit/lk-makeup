@@ -1,7 +1,7 @@
 <?php
 namespace Larakit\Makeup;
 
-use Larakit\Helper\HelperFile;
+use Larakit\Helpers\HelperFile;
 use Larakit\ServiceProvider;
 use Larakit\StaticFiles\Css;
 use TwigBridge\Engine\Twig;

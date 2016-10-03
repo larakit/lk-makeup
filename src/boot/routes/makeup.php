@@ -6,52 +6,37 @@
 //  Главная
 //****************************************
 \Larakit\Route\Route::item('makeup')
-    ->setBaseUrl('/makeup')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->put()
-;
+                    ->setBaseUrl('/makeup')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->put();
 \Larakit\Route\Route::item('makeup/download')
-    ->setBaseUrl('/makeup/download')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('download')
-    ->put()
-;
+                    ->setBaseUrl('/makeup/download')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('Makeup')
+                    ->setAction('download')
+                    ->put();
 \Larakit\Route\Route::item('makeup/block')
-    ->setBaseUrl('/makeup/block-{block}')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('block')
-    ->put()
-;
+                    ->setBaseUrl('/makeup/block-{block}')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('Makeup')
+                    ->setAction('block')
+                    ->put();
 \Larakit\Route\Route::item('makeup/page')
-    ->setBaseUrl('/makeup/page-{page}')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('page')
-    ->put()
-;
+                    ->setBaseUrl('/makeup/page-{page}')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('Makeup')
+                    ->setAction('page')
+                    ->put();
 
 \Larakit\Route\Route::item('makeup/frame_block')
-    ->setBaseUrl('/makeup/frame-block-{block}')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('frameBlock')
-    ->put()
-;
+                    ->setBaseUrl('/makeup/frame-block-{block}')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('Makeup')
+                    ->setAction('frameBlock')
+                    ->put();
 \Larakit\Route\Route::item('makeup/frame_page')
-    ->setBaseUrl('/makeup/frame-page-{page}')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('framePage')
-    ->put()
-;
-
-
-\Larakit\Route\Route::item('lorempixel')
-    ->setBaseUrl('/!/lorempixel/{w}x{h}/{cat}/{number}.jpeg')
-    ->setNamespace('Larakit\Makeup\Controller')
-    ->setController('Makeup')
-    ->setAction('lorempixel')
-    ->put()
-;
+                    ->setBaseUrl('/makeup/frame-page-{page}')
+                    ->setNamespace('Larakit\Makeup\Controller')
+                    ->setController('Makeup')
+                    ->setAction('framePage')
+                    ->put();

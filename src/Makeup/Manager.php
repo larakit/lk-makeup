@@ -10,12 +10,14 @@ class Manager {
     static           $breakpoints = [];
     static           $lorempixel  = [];
     static protected $prefix;
+    const ROUTE_PREFIX_MAKEUP       = 'makeup*';
+    const ROUTE_PREFIX_MAKEUP_FRAME = 'makeup/frame*';
 
     /**
      * @return mixed
      */
     public static function getUrl($sub = null) {
-        return '/'.self::$prefix . DIRECTORY_SEPARATOR . $sub;
+        return '/' . self::$prefix . DIRECTORY_SEPARATOR . $sub;
     }
 
     public static function getPrefix() {

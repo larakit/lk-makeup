@@ -127,6 +127,7 @@ class MakeupController extends Controller {
     }
 
     function framePage() {
+        \Config::set('app.debug', false);
         $page  = \Route::input('page');
         $theme = \Request::input('theme');
         if($theme) {

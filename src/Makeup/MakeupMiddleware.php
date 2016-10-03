@@ -30,6 +30,13 @@ class MakeupMiddleware {
             }
         }
 
+        foreach(\Larakit\StaticFiles\Manager::packages() as $name => $p) {
+            /*  @var    $p \Larakit\StaticFiles\Package */
+            if('makeup-blocks' != $name) {
+                $p->addExclude('makeup/frame*');
+            }
+        }
+
         return $next($request);
     }
 }

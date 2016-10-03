@@ -27,7 +27,6 @@
                     ->setController('Makeup')
                     ->setAction('page')
                     ->put();
-
 \Larakit\Route\Route::item('makeup/frame_block')
                     ->setBaseUrl('/makeup/frame-block-{block}')
                     ->setNamespace('Larakit\Makeup\Controller')

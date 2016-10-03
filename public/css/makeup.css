@@ -45,17 +45,17 @@ body {
 	padding     : 0;
 	background  : url(/packages/larakit/lk-makeup/img/photo-bg.png) repeat 0 0;
 }
-.header {
+.makeup--header {
 	padding       : 20px 20px 10px;
 	background  : #EB6251;
 	color : #ffffff;
 }
-.header:after {
+.makeup--header:after {
 	display : block;
 	content : '';
 	clear   : both;
 }
-.frame {
+.makeup--frame {
 	position   : fixed;
 	top        : 107px;
 	right      : 0;
@@ -63,7 +63,7 @@ body {
 	left       : 0;
 	text-align : center;
 }
-.frame iframe {
+.makeup--frame iframe {
 	width      : 100%;
 	height     : 100%;
 	margin     : 0 auto;

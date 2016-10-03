@@ -41,9 +41,6 @@ class MakeupBlock {
     function css() {
         $ret = [];
         $prefix = 'blocks/'.$this->name.'/' ;
-        if(file_exists(Manager::getPath($prefix . 'block.css'))) {
-            $ret[] = Manager::getUrl($prefix . 'block.css');
-        }
         $suffix_breakpoints = Manager::getUrl($prefix);
         $dir_breakpoints    = Manager::getPath($prefix);
         if(file_exists($dir_breakpoints)) {
@@ -52,11 +49,15 @@ class MakeupBlock {
                 $size = (int) $fn;
                 if($size) {
                     $this->breakpoint($size);
-                    $ret[] = $suffix_breakpoints . $fn;
+                    $ret[$size] = $suffix_breakpoints . $fn;
                 }
             }
         }
-
+        ksort($ret);
+        if(file_exists(Manager::getPath($prefix . 'block.css'))) {
+            $ret[] = Manager::getUrl($prefix . 'block.css');
+        }
+        krsort($ret);
         return $ret;
     }
 
